@@ -7,5 +7,7 @@ class ReservationMailer < ApplicationMailer
 		@listing = listing
 		mail(to: @customer.email, subject: 'Your reservation has been confirmed')
 	end
+
+	#create a method to send to the listing owner too! 
 		
 end
