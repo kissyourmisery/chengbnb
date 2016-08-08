@@ -14,7 +14,7 @@ class ReservationsController < ApplicationController
 
 			@customer = current_user
 			@listing = @reservation.listing
-			ReservationMailer.reservation_email(@customer, @listing).deliver_now
+			ReservationMailer.reservation_email(@customer, @listing).deliver_later
 			redirect_to Listing.find(input[:listing_id])
 		end
 	end
