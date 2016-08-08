@@ -1,0 +1,29 @@
+<!-- http://eternicode.github.io/bootstrap-datepicker/?markup=range&format=&weekStart=&startDate=&endDate=&startView=0&minViewMode=0&maxViewMode=4&todayBtn=false&clearBtn=false&language=en&orientation=auto&multidate=&multidateSeparator=&keyboardNavigation=on&forceParse=on&datesDisabled=on#sandbox -->
+
+<%= @listing.title %>
+
+<% @listing.available_dates.each do |date| %>
+	<% if date.availability == true %>
+		<%= date.date %>
+	<%end%>
+<%end%>
+
+<% if @listing.photos? %>
+	<% @listing.photos.each do |photo| %>
+		<%= image_tag(photo.mid) %>
+	<%end%>
+<%end%>
+
+<%= form_for(:reservation, url: reservations_path) do |f| %>
+	<%= f.hidden_field(:listing_id, :value=> @listing.id) %>
+	<div>
+		<%= f.label :start_date %>
+		<div class="input-daterange input-group" id="datepicker">
+			<%= f.text_field :start_date, class: 'input-sm form-control'  %>
+			<span class="input-group-addon">to</span>
+			<%= f.text_field :end_date, class: 'input-sm form-control'  %>
+		</div>
+	</div>
+	<div>
+	<%= f.submit "Create Reservation" %>
+<%end%>

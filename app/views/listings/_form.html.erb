@@ -1,0 +1,35 @@
+<%= form_for @listing do |f| %>
+	<div>
+		<%= f.label :title %>
+		<%= f.text_field :title %>
+	</div>
+	<div>
+		<%= f.label :location %>
+		<%= f.text_area :location %>
+	</div>
+	<div>
+		<%= f.label :number_of_beds %>
+		<%= f.number_field :number_of_beds %>
+	</div>
+	<div>
+		<%= f.label :number_of_guests %>
+		<%= f.number_field :number_of_guests %>
+	</div>
+	<div>
+		<%= f.label :tags %>
+		<%= f.collection_check_boxes(:tag_ids, Tag.all, :id, :content) %>
+	</div>
+	<div>
+		<%= f.label :available_dates %>
+		<div class="input-daterange input-group" id="datepicker">
+			<%= f.text_field :start_date, class: 'input-sm form-control'  %>
+			<span class="input-group-addon">to</span>
+			<%= f.text_field :end_date, class: 'input-sm form-control'  %>
+		</div>
+	</div>
+	<div>
+		<%= f.label :photos %>
+		<%= f.file_field :photos, multiple: true %>
+	</div>
+	<%= f.submit "Create Listing" %>
+<%end%>

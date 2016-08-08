@@ -1,0 +1,33 @@
+<h1>Choose your desired house!</h1>
+<%= link_to "Create New Listing", new_listing_path %>
+
+<%= form_for_filterrific @filterrific do |f| %>
+  <div>
+    Search
+    <%= f.text_field(
+      :search_query,
+      class: 'filterrific-periodically-observed'
+    ) %>
+  </div>
+   <div>
+    Tag
+<!-- Good documention on checkbox filters: http://www.lauradhamilton.com/how-to-filter-by-multiple-options-filterrific-rails -->
+    <% @filterrific.select_options[:with_tag_id].each do |c| %>
+      <div>
+        <%= check_box_tag("filterrific[with_tag_id][]",c[1]) %>
+        <%=h c[0]%>
+      </div>
+    <% end %>
+  </div>
+  <div>
+    <%= link_to(
+      'Reset filters',
+      reset_filterrific_url,
+    ) %>
+  </div>
+  <%# add an automated spinner to your form when the list is refreshed %>
+  <%= render_filterrific_spinner %>
+<% end %>
+
+<%= render( partial: 'listings/list', locals: { listings: @listings } ) %>
+

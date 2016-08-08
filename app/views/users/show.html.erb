@@ -1,0 +1,18 @@
+<%= @user.email %>
+<br>
+
+<%= image_tag(@user.profile_photo.mid) if @user.profile_photo? %>
+<br>
+
+<h2>My reservations</h2>
+<% if @user.reservations.count != 0 %>
+	<% @user.reservations.each do |reservation| %>
+		<%=reservation.listing.title%>
+		Start date: <%=reservation.start_date%>
+		End date:  <%=reservation.end_date%>
+		<%= link_to 'Delete', reservation, method: :delete, data: {confirm: 'Are you sure?' } %>
+		<br>
+	<%end%>
+<%end%>
+
+<%= link_to 'Edit', edit_user_path(@user) %>
