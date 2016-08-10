@@ -11,11 +11,7 @@ class ReservationsController < ApplicationController
 		@reservation.user_id = current_user.id 
 		if @reservation.save 
 			reserve_availability(input[:start_date], input[:end_date], input[:listing_id])
-
-			@customer = current_user
-			@listing = @reservation.listing
-			ReservationMailer.reservation_email(@customer, @listing).deliver_later
-			redirect_to Listing.find(input[:listing_id])
+			redirect_to new_reservation_payment_path(@reservation)
 		end
 	end
 
