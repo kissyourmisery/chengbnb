@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160803043121) do
+ActiveRecord::Schema.define(version: 20160803043125) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -49,6 +49,7 @@ ActiveRecord::Schema.define(version: 20160803043121) do
     t.date    "start_date"
     t.date    "end_date"
     t.text    "photos",           default: [], array: true
+    t.integer "price"
   end
 
   add_index "listings", ["user_id"], name: "index_listings_on_user_id", using: :btree
@@ -61,6 +62,7 @@ ActiveRecord::Schema.define(version: 20160803043121) do
     t.integer  "num_guests"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.text     "transaction_id"
   end
 
   create_table "tags", force: :cascade do |t|

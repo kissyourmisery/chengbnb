@@ -20,6 +20,9 @@
 		<%= f.collection_check_boxes(:tag_ids, Tag.all, :id, :content) %>
 	</div>
 	<div>
+		<%= f.label :price %>
+		<%= f.number_field :price %>
+	<div>
 		<%= f.label :available_dates %>
 		<div class="input-daterange input-group" id="datepicker">
 			<%= f.text_field :start_date, class: 'input-sm form-control'  %>

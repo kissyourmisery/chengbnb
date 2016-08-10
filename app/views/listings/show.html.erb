@@ -1,18 +1,23 @@
 <!-- http://eternicode.github.io/bootstrap-datepicker/?markup=range&format=&weekStart=&startDate=&endDate=&startView=0&minViewMode=0&maxViewMode=4&todayBtn=false&clearBtn=false&language=en&orientation=auto&multidate=&multidateSeparator=&keyboardNavigation=on&forceParse=on&datesDisabled=on#sandbox -->
 
 <%= @listing.title %>
-
-<% @listing.available_dates.each do |date| %>
+<br>
+Available dates: <% @listing.available_dates.each do |date| %>
 	<% if date.availability == true %>
 		<%= date.date %>
 	<%end%>
 <%end%>
+<br>
 
 <% if @listing.photos? %>
 	<% @listing.photos.each do |photo| %>
 		<%= image_tag(photo.mid) %>
 	<%end%>
 <%end%>
+<br>
+
+Price: $<%= @listing.price %>
+
 
 <%= form_for(:reservation, url: reservations_path) do |f| %>
 	<%= f.hidden_field(:listing_id, :value=> @listing.id) %>
@@ -27,3 +32,4 @@
 	<div>
 	<%= f.submit "Create Reservation" %>
 <%end%>
+

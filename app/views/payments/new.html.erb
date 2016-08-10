@@ -1,0 +1,18 @@
+<form id="checkout" method="post" action="/reservations/<%=@reservation.id%>/payments">
+  <div id="payment-form"></div>
+  <input name="reservation_id" value='<%=@reservation.id%>' type="hidden">
+  <input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden">
+  <input type="submit" value="Pay now!">
+</form>
+
+<script src="https://js.braintreegateway.com/js/braintree-2.27.0.min.js"></script>
+<script>
+// We generated a client token for you so you can test out this code
+// immediately. In a production-ready integration, you will need to
+// generate a client token on your server (see section below).
+var clientToken = '<%=@client_token%>';
+
+braintree.setup(clientToken, "dropin", {
+  container: "payment-form"
+});
+</script>

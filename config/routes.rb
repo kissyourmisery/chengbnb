@@ -19,7 +19,9 @@ Rails.application.routes.draw do
 
   resources :tags
 
-  resources :reservations
+  resources :reservations do 
+    resources :payments, only: [:create, :new]
+  end
 
   root 'welcome#index'
 
