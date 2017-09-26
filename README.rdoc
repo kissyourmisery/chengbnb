@@ -1,3 +1,5 @@
 Cloned features of airbnb, including listings, reservations, and payments 
 
 Integrated with APIs such as AWS and BrainTree
+
+Built on top of Ruby on Rails
